@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Bucket List Piyusha Supe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header, footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      font-size: 18px;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+
+    li.completed {
+      background-color: #e7f7e7;
+      color: #2e7d32;
+      text-decoration: line-through;
+    }
+
+    li:hover {
+      background-color: #f0f0f0;
+      transform: scale(1.02);
+    }
+
+    li i {
+      font-size: 20px;
+      color: #4CAF50;
+      cursor: pointer;
+    }
+
+    header {
+      border-bottom: 2px solid #e7e7e7;
+    }
+
+    footer {
+      border-top: 2px solid #e7e7e7;
+      font-size: 14px;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    input[type="text"] {
+      width: calc(100% - 24px);
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 15px;
+      }
+
+      li {
+        font-size: 16px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Personal Bucket List</h1>
+    
+    <h2>Piyusha Supe</h2>
+  </header>
+
+  <main>
+    <input type="text" id="newItem" placeholder="Enter a new bucket list item">
+    <button onclick="addNewItem()">
+      Add Item
+    </button>
+    <ul id="bucketList">
+      <li class="completed">
+        Visit the Grand Canyon
+        <i onclick="deleteItem(this)">&#x2716;</i>
+      </li>
+      <li class="completed">
+        Learn to play the guitar
+        <i onclick="deleteItem(this)">&#x2716;</i>
+      </li>
+      <li>
+        Skydiving adventure
+        <i onclick="deleteItem(this)">&#x2716;</i>
+      </li>
+      <li>
+        Write a novel
+        <i onclick="deleteItem(this)">&#x2716;</i>
+      </li>
+      <li>
+        Travel to Japan
+        <i onclick="deleteItem(this)">&#x2716;</i>
+      </li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>Keep dreaming and achieving!(Made By Piyusha Supe) &copy; 2025 <br></p>
+  </footer>
+
+  <script>
+    function addNewItem() {
+      const input = document.getElementById('newItem');
+      const itemText = input.value.trim();
+      if (itemText === '') {
+        alert('Please enter a valid item.');
+        return;
+      }
+
+      const ul = document.getElementById('bucketList');
+      const li = document.createElement('li');
+      li.innerHTML = `${itemText} <i onclick="deleteItem(this)">&#x2716;</i>`;
+
+      li.addEventListener('click', () => {
+        li.classList.toggle('completed');
+      });
+
+      li.addEventListener('mouseenter', () => {
+        li.style.backgroundColor = '#f0f0f0';
+        li.style.transform = 'scale(1.02)';
+      });
+
+      li.addEventListener('mouseleave', () => {
+        li.style.backgroundColor = '';
+        li.style.transform = 'scale(1)';
+      });
+
+      ul.appendChild(li);
+      input.value = '';
+    }
+
+    function deleteItem(element) {
+      const li = element.parentElement;
+      li.remove();
+    }
+
+    document.querySelectorAll('header, footer').forEach(element => {
+      element.addEventListener('mouseenter', () => {
+        element.style.backgroundColor = '#45a049';
+        element.style.transition = 'background-color 0.3s ease';
+      });
+
+      element.addEventListener('mouseleave', () => {
+        element.style.backgroundColor = '#4CAF50';
+      });
+    });
+  </script>
+</body>
+</html>
